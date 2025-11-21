@@ -146,25 +146,24 @@ body {
     background-color: #0056b3;
 }
 
-/* DELETE Icon */
-.icon-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.3em; 
-    padding: 5px;
-    margin-left: 5px;
-    transition: transform 0.1s;
-    line-height: 1;
+/* DELETE Button (The final requested style) */
+.btn-delete-action {
+    background-color: var(--color-danger); /* Red color */
+    color: white;
+    padding: 8px 12px;
+    font-size: 0.85em;
+    margin-right: 0; 
+}
+.btn-delete-action:hover {
+    background-color: #c82333;
 }
 
-.delete-icon {
-    color: var(--color-danger); 
-    font-weight: 900;
+
+/* --- Removed Icon Styling --- 
+.icon-btn, .delete-icon {
+    display: none; 
 }
-.delete-icon:hover {
-    transform: scale(1.15);
-}
+*/
 
 /* Save/Cancel actions */
 .btn-save { background-color: var(--color-success); color: white; padding: 8px 12px !important; }

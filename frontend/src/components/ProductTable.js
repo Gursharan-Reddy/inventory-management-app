@@ -117,9 +117,7 @@ const ProductTable = ({ products, onOptimisticUpdate, onOptimisticDelete, onRowC
                             ) : (
                                 <>
                                 <button onClick={(e) => { e.stopPropagation(); startEdit(product); }} className="btn-edit-action">Edit</button>
-                                <button onClick={(e) => { e.stopPropagation(); handleDelete(product.id, product.name); }} className="icon-btn delete-icon" title="Delete Product">
-                                    🗑️
-                                </button>
+                                <button onClick={(e) => { e.stopPropagation(); handleDelete(product.id, product.name); }} className="btn-delete-action">Delete</button>
                                 </>
                             )}
                         </td>
