@@ -25,24 +25,26 @@ function App() {
         onClose: null 
     });
 
-    const openAlert = (message) => {
+    // FIX 1: Memoize openAlert to prevent recreation on every render
+    const openAlert = useCallback((message) => {
         setDialog({ 
             isOpen: true, 
             message: message, 
             isConfirm: false, 
             onConfirm: null, 
-            onClose: () => setDialog({ ...dialog, isOpen: false })
+            onClose: () => setDialog(prev => ({ ...prev, isOpen: false }))
         });
-    };
+    }, [setDialog]); // setDialog is stable, so openAlert is stable
 
-    const openConfirm = (message) => {
+    // FIX 2: Memoize openConfirm to prevent recreation on every render
+    const openConfirm = useCallback((message) => {
         return new Promise((resolve) => {
             const handleConfirm = () => {
-                setDialog({ ...dialog, isOpen: false });
+                setDialog(prev => ({ ...prev, isOpen: false }));
                 resolve(true);
             };
             const handleCancel = () => {
-                setDialog({ ...dialog, isOpen: false });
+                setDialog(prev => ({ ...prev, isOpen: false }));
                 resolve(false);
             };
 
@@ -54,9 +56,9 @@ function App() {
                 onClose: handleCancel,
             });
         });
-    };
+    }, [setDialog]); // setDialog is stable, so openConfirm is stable
 
-    // fetchProducts relies on the dependency array of the surrounding useCallback
+
     const fetchProducts = useCallback(async () => {
         try {
             let url = API_URL;
@@ -74,8 +76,8 @@ function App() {
             console.error('Error fetching products:', error);
             openAlert('Failed to fetch products. Check console for details.');
         }
+    // Now that openAlert is stable, this dependency array is clean
     }, [searchQuery, selectedCategory, openAlert]); 
-    // ^ openAlert must be here to clear the ESlint warning, but it doesn't cause the loop.
 
     useEffect(() => {
         if (API_URL) {
@@ -83,8 +85,8 @@ function App() {
         } else {
             console.error("REACT_APP_API_URL is not set in environment variables.");
         }
-    // FIX: The dependencies that trigger the fetch are now placed here directly,
-    // ensuring fetchProducts is only called when its dependencies actually change.
+    // This dependency array now relies only on state that changes due to user input/filter, 
+    // ensuring the fetch only runs when filtering happens, or once on mount.
     }, [searchQuery, selectedCategory, fetchProducts]); 
 
     const handleImportSuccess = () => {
