@@ -1,0 +1,293 @@
+/* Color Variables */
+:root {
+    --color-primary: #007bff;
+    --color-secondary: #6c757d;
+    --color-success: #28a745;
+    --color-danger: #dc3545;
+    --color-red: #dc3545;
+    --color-green: #28a745;
+    --color-light: #f8f9fa;
+    --color-dark: #343a40;
+    --color-darker: #212529;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: var(--color-light);
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.app-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-secondary);
+}
+.app-header h2 {
+    color: var(--color-darker);
+    margin: 0;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.controls input, .controls select {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.2s;
+}
+
+.btn-primary, .btn-secondary, .btn-confirm, .btn-cancel, .btn-edit-action, .btn-delete-action {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+    background-color: var(--color-secondary);
+    color: white;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Product Table --- */
+.products-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.products-table th, .products-table td {
+    border: 1px solid #e9ecef;
+    padding: 15px 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.products-table th {
+    background-color: var(--color-darker);
+    color: white;
+    font-weight: 600;
+}
+
+.products-table tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.products-table input {
+    padding: 8px;
+    border: 1px solid var(--color-primary);
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Image Column Styling */
+.product-thumb {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+.image-cell {
+    width: 60px;
+}
+
+/* Action Buttons & Icons */
+.actions-cell {
+    white-space: nowrap;
+    width: 150px;
+}
+
+/* EDIT Button */
+.btn-edit-action {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 8px 12px;
+    font-size: 0.85em;
+    margin-right: 8px;
+}
+.btn-edit-action:hover {
+    background-color: #0056b3;
+}
+
+/* DELETE Icon */
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3em; 
+    padding: 5px;
+    margin-left: 5px;
+    transition: transform 0.1s;
+    line-height: 1;
+}
+
+.delete-icon {
+    color: var(--color-danger); 
+    font-weight: 900;
+}
+.delete-icon:hover {
+    transform: scale(1.15);
+}
+
+/* Save/Cancel actions */
+.btn-save { background-color: var(--color-success); color: white; padding: 8px 12px !important; }
+.btn-save:hover { background-color: #1e7e34; }
+.btn-cancel { background-color: var(--color-secondary); color: white; padding: 8px 12px !important; }
+.btn-cancel:hover { background-color: #5a6268; }
+
+/* --- History Sidebar --- */
+.history-sidebar {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 320px;
+    height: 100%;
+    background: #fff;
+    box-shadow: -4px 0 10px rgba(0,0,0,0.1);
+    transition: right 0.3s;
+    padding: 20px;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.history-sidebar.open {
+    right: 0;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--color-darker); /* Stronger divider */
+    padding-bottom: 10px;
+}
+.history-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: var(--color-darker);
+}
+
+/* Close button specific styling */
+.history-header button {
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.history-header button:hover {
+    background-color: #5a6268;
+}
+
+
+.history-list {
+    list-style: none;
+    padding: 0;
+}
+
+.history-list li {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    font-size: 0.9em;
+}
+
+/* --- Dialog and Modal Styling (CustomDialog & AddProductModal) --- */
+.dialog-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.dialog-modal {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+}
+
+.dialog-message {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.dialog-modal.add-modal {
+    max-width: 500px;
+    text-align: left;
+}
+.dialog-modal.add-modal h3 {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.dialog-modal.add-modal label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.dialog-modal.add-modal input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
