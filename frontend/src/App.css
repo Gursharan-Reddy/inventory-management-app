@@ -196,7 +196,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    border-bottom: 1px solid var(--color-darker); /* Stronger divider */
+    border-bottom: 1px solid var(--color-darker);
     padding-bottom: 10px;
 }
 .history-header h3 {

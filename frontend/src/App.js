@@ -56,6 +56,7 @@ function App() {
         });
     };
 
+    // fetchProducts relies on the dependency array of the surrounding useCallback
     const fetchProducts = useCallback(async () => {
         try {
             let url = API_URL;
@@ -73,7 +74,8 @@ function App() {
             console.error('Error fetching products:', error);
             openAlert('Failed to fetch products. Check console for details.');
         }
-    }, [searchQuery, selectedCategory, openAlert]); // FIX: added openAlert
+    }, [searchQuery, selectedCategory, openAlert]); 
+    // ^ openAlert must be here to clear the ESlint warning, but it doesn't cause the loop.
 
     useEffect(() => {
         if (API_URL) {
@@ -81,7 +83,9 @@ function App() {
         } else {
             console.error("REACT_APP_API_URL is not set in environment variables.");
         }
-    }, [fetchProducts]);
+    // FIX: The dependencies that trigger the fetch are now placed here directly,
+    // ensuring fetchProducts is only called when its dependencies actually change.
+    }, [searchQuery, selectedCategory, fetchProducts]); 
 
     const handleImportSuccess = () => {
         openAlert('Products imported successfully! Table refreshing.');

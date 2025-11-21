@@ -11,7 +11,6 @@ const ProductTable = ({ products, onOptimisticUpdate, onOptimisticDelete, onRowC
     };
 
     const handleSave = async (id) => {
-        // Optimistic Update
         onOptimisticUpdate(editData);
         setEditingId(null);
 
@@ -21,7 +20,6 @@ const ProductTable = ({ products, onOptimisticUpdate, onOptimisticDelete, onRowC
         } catch (error) {
             console.error('Update failed:', error);
             openAlert('Update failed: Reverting changes and refreshing table. ' + (error.response?.data?.errors?.[0]?.msg || error.message));
-            // Simple rollback strategy for this assignment:
             window.location.reload(); 
         }
     };
@@ -32,7 +30,6 @@ const ProductTable = ({ products, onOptimisticUpdate, onOptimisticDelete, onRowC
             return;
         }
 
-        // Optimistic Delete
         onOptimisticDelete(id);
 
         try {
@@ -120,7 +117,9 @@ const ProductTable = ({ products, onOptimisticUpdate, onOptimisticDelete, onRowC
                             ) : (
                                 <>
                                 <button onClick={(e) => { e.stopPropagation(); startEdit(product); }} className="btn-edit-action">Edit</button>
-                                <button onClick={(e) => { e.stopPropagation(); handleDelete(product.id, product.name); }} className="btn-delete-action">Delete</button>
+                                <button onClick={(e) => { e.stopPropagation(); handleDelete(product.id, product.name); }} className="icon-btn delete-icon" title="Delete Product">
+                                    🗑️
+                                </button>
                                 </>
                             )}
                         </td>
